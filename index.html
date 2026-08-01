@@ -1,0 +1,1087 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>SF Um Mês — Guia North Beach</title>
+<meta name="theme-color" content="#14202B">
+<meta name="description" content="Guia de um mês em San Francisco: metrô até o escritório, marmitas, compras e passeios.">
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="icons/icon-192.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --fog:#E8E9E4;
+  --paper:#F7F7F4;
+  --ink:#14202B;
+  --ink-soft:#5A6672;
+  --rule:#CFD2CC;
+
+  /* Cores de linha — cada seção é uma "linha" do mapa */
+  --line-t:#C1440E;      /* Comutar — laranja Golden Gate */
+  --line-k:#1F5F8B;      /* Passeios — azul baía */
+  --line-n:#2F6B4F;      /* Cozinha — verde */
+  --line-j:#8A5A2B;      /* Essenciais — marrom */
+  --line-m:#6B3F7A;      /* Mês — roxo */
+
+  --shadow:0 1px 2px rgba(20,32,43,.06),0 8px 24px rgba(20,32,43,.06);
+  --r:14px;
+  --tap:44px;
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;padding:0}
+body{
+  background:var(--fog);
+  color:var(--ink);
+  font-family:"Source Serif 4",Georgia,"Times New Roman",serif;
+  font-size:16.5px;line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+  padding-bottom:env(safe-area-inset-bottom);
+}
+h1,h2,h3,h4,.disp{
+  font-family:"Barlow Condensed","Arial Narrow",Impact,sans-serif;
+  font-weight:600;letter-spacing:.01em;margin:0;
+  text-transform:uppercase;
+}
+.mono{font-family:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace}
+
+/* ---------- Cabeçalho ---------- */
+header{
+  background:var(--ink);color:var(--fog);
+  padding:calc(18px + env(safe-area-inset-top)) 18px 0;
+}
+.brand{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+.brand h1{font-size:31px;line-height:1;color:#fff;letter-spacing:.02em}
+.brand .sub{
+  font-family:"IBM Plex Mono",monospace;font-size:10.5px;
+  letter-spacing:.14em;text-transform:uppercase;color:#8FA3B3;
+}
+.kicker{
+  font-family:"IBM Plex Mono",monospace;font-size:11px;color:#8FA3B3;
+  margin:8px 0 14px;line-height:1.5;
+}
+.kicker b{color:#E8E9E4;font-weight:500}
+
+/* ---------- Navegação: seletor de linhas ---------- */
+nav{
+  display:flex;gap:0;overflow-x:auto;scrollbar-width:none;
+  -webkit-overflow-scrolling:touch;
+}
+nav::-webkit-scrollbar{display:none}
+nav button{
+  flex:0 0 auto;background:none;border:0;cursor:pointer;
+  color:#8FA3B3;padding:11px 15px 13px;
+  font-family:"Barlow Condensed",sans-serif;font-weight:600;
+  font-size:16px;letter-spacing:.06em;text-transform:uppercase;
+  border-bottom:4px solid transparent;
+  min-height:var(--tap);white-space:nowrap;
+  transition:color .18s;
+}
+nav button .dot{
+  display:inline-block;width:9px;height:9px;border-radius:50%;
+  margin-right:7px;vertical-align:1px;background:currentColor;opacity:.55;
+  transition:opacity .18s;
+}
+nav button[aria-selected="true"]{color:#fff}
+nav button[aria-selected="true"] .dot{opacity:1}
+nav button:focus-visible{outline:2px solid #fff;outline-offset:-3px}
+
+/* ---------- Layout ---------- */
+main{max-width:760px;margin:0 auto;padding:20px 16px 90px}
+.panel{display:none;animation:rise .34s cubic-bezier(.2,.7,.3,1)}
+.panel.on{display:block}
+@keyframes rise{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+
+.sec-head{margin:30px 0 14px;display:flex;align-items:center;gap:11px}
+.sec-head:first-child{margin-top:4px}
+.sec-head .bar{width:5px;height:26px;border-radius:3px;background:var(--accent);flex:0 0 auto}
+.sec-head h2{font-size:23px;line-height:1.05}
+.sec-head .n{
+  font-family:"IBM Plex Mono",monospace;font-size:10.5px;color:var(--ink-soft);
+  letter-spacing:.12em;margin-left:auto;text-transform:uppercase;
+}
+
+.card{
+  background:var(--paper);border-radius:var(--r);padding:17px 18px;
+  box-shadow:var(--shadow);margin-bottom:13px;
+  border:1px solid rgba(20,32,43,.05);
+}
+.card h3{font-size:18px;margin-bottom:5px;letter-spacing:.02em}
+.card h4{font-size:15px;margin:14px 0 5px;color:var(--ink-soft);letter-spacing:.05em}
+.card p{margin:0 0 9px}
+.card p:last-child{margin-bottom:0}
+.muted{color:var(--ink-soft);font-size:14.5px}
+.tiny{font-size:13px;color:var(--ink-soft);line-height:1.5}
+
+.tag{
+  display:inline-block;font-family:"IBM Plex Mono",monospace;
+  font-size:10.5px;letter-spacing:.09em;text-transform:uppercase;
+  padding:3px 8px;border-radius:5px;margin:0 5px 5px 0;
+  background:rgba(20,32,43,.07);color:var(--ink-soft);
+}
+.tag.hot{background:color-mix(in srgb,var(--accent) 15%,transparent);color:var(--accent)}
+.price{
+  font-family:"IBM Plex Mono",monospace;font-weight:600;
+  font-size:14px;color:var(--accent);
+}
+
+/* ---------- Diagrama de rota (assinatura) ---------- */
+.route{position:relative;padding-left:34px;margin:4px 0 2px}
+.route::before{
+  content:"";position:absolute;left:8px;top:9px;bottom:9px;width:5px;
+  border-radius:3px;background:var(--accent);opacity:.28;
+}
+.route .fill{
+  position:absolute;left:8px;top:9px;width:5px;border-radius:3px;
+  background:var(--accent);height:0;
+  transition:height 1.1s cubic-bezier(.4,0,.2,1);
+}
+.route.drawn .fill{height:calc(100% - 18px)}
+.stop{position:relative;padding:0 0 20px}
+.stop:last-child{padding-bottom:0}
+.stop::before{
+  content:"";position:absolute;left:-30px;top:5px;
+  width:13px;height:13px;border-radius:50%;
+  background:var(--paper);border:3.5px solid var(--accent);
+  box-shadow:0 0 0 3px var(--paper);
+}
+.stop.walk::before{background:var(--accent);border-color:var(--paper);box-shadow:0 0 0 2px var(--accent)}
+.stop .t{
+  font-family:"Barlow Condensed",sans-serif;font-weight:600;
+  font-size:17px;text-transform:uppercase;letter-spacing:.02em;line-height:1.2;
+}
+.stop .d{font-size:14.5px;color:var(--ink-soft);margin-top:3px;line-height:1.5}
+.stop .meta{
+  font-family:"IBM Plex Mono",monospace;font-size:11.5px;
+  color:var(--accent);margin-top:4px;letter-spacing:.03em;
+}
+
+/* ---------- Tabela ---------- */
+.tbl{width:100%;border-collapse:collapse;font-size:14px;margin-top:8px}
+.tbl th{
+  font-family:"Barlow Condensed",sans-serif;text-transform:uppercase;
+  font-size:12.5px;letter-spacing:.08em;color:var(--ink-soft);
+  text-align:left;padding:6px 8px 6px 0;border-bottom:1.5px solid var(--rule);
+}
+.tbl td{padding:9px 8px 9px 0;border-bottom:1px solid var(--rule);vertical-align:top}
+.tbl td.mono{font-family:"IBM Plex Mono",monospace;font-size:13px;white-space:nowrap}
+.tbl tr:last-child td{border-bottom:0}
+
+/* ---------- Checklists ---------- */
+.check{display:flex;align-items:flex-start;gap:11px;padding:9px 0;border-bottom:1px solid var(--rule);cursor:pointer;min-height:var(--tap)}
+.check:last-child{border-bottom:0}
+.check input{
+  appearance:none;-webkit-appearance:none;flex:0 0 auto;
+  width:21px;height:21px;margin-top:2px;border-radius:6px;
+  border:2px solid var(--rule);background:#fff;cursor:pointer;
+  transition:background .15s,border-color .15s;position:relative;
+}
+.check input:checked{background:var(--accent);border-color:var(--accent)}
+.check input:checked::after{
+  content:"";position:absolute;left:6.5px;top:2.5px;
+  width:5px;height:10px;border:solid #fff;border-width:0 2.5px 2.5px 0;
+  transform:rotate(43deg);
+}
+.check input:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
+.check .lbl{flex:1;font-size:15.5px;line-height:1.45}
+.check .qty{font-family:"IBM Plex Mono",monospace;font-size:12.5px;color:var(--ink-soft);white-space:nowrap;margin-top:2px}
+.check input:checked ~ .lbl{opacity:.42;text-decoration:line-through}
+
+.listhead{
+  display:flex;align-items:baseline;justify-content:space-between;
+  gap:10px;margin:18px 0 2px;
+}
+.listhead h4{margin:0;font-size:15px;color:var(--ink);letter-spacing:.06em}
+.listhead .cnt{font-family:"IBM Plex Mono",monospace;font-size:11.5px;color:var(--ink-soft)}
+
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:7px;
+  min-height:var(--tap);padding:0 16px;border-radius:10px;cursor:pointer;
+  font-family:"Barlow Condensed",sans-serif;font-weight:600;font-size:15px;
+  text-transform:uppercase;letter-spacing:.07em;
+  border:1.5px solid var(--rule);background:#fff;color:var(--ink);
+  text-decoration:none;transition:border-color .15s,background .15s;
+}
+.btn:hover{border-color:var(--accent)}
+.btn:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
+.btn.solid{background:var(--accent);border-color:var(--accent);color:#fff}
+.btnrow{display:flex;gap:9px;flex-wrap:wrap;margin-top:12px}
+
+/* ---------- Receita ---------- */
+.recipe{border-left:4px solid var(--accent);padding-left:14px;margin:16px 0}
+.recipe:first-of-type{margin-top:6px}
+.recipe h3{font-size:17.5px}
+.recipe .meta{
+  font-family:"IBM Plex Mono",monospace;font-size:11.5px;
+  color:var(--ink-soft);letter-spacing:.05em;margin:3px 0 8px;
+}
+.recipe ul{margin:6px 0 8px;padding-left:19px;font-size:15px}
+.recipe li{margin-bottom:3px}
+.recipe ol{margin:6px 0 0;padding-left:19px;font-size:15px}
+.recipe ol li{margin-bottom:5px}
+
+/* ---------- Passeio ---------- */
+.spot{border-top:1px solid var(--rule);padding:15px 0}
+.spot:first-of-type{border-top:0;padding-top:2px}
+.spot h3{font-size:18px}
+.spot .addr{font-size:13.5px;color:var(--ink-soft);margin:2px 0 7px}
+.spot .row{display:flex;gap:9px;margin:6px 0;align-items:flex-start;font-size:14.5px}
+.spot .row .k{
+  font-family:"Barlow Condensed",sans-serif;text-transform:uppercase;
+  font-size:12.5px;letter-spacing:.07em;color:var(--accent);
+  flex:0 0 78px;padding-top:2.5px;font-weight:600;
+}
+.spot .row .v{flex:1;line-height:1.5}
+
+/* ---------- Semana ---------- */
+.week{margin-bottom:15px}
+.week .wk{
+  font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.13em;
+  color:var(--accent);text-transform:uppercase;margin-bottom:4px;
+}
+.week h3{font-size:18px;margin-bottom:6px}
+.days{display:grid;gap:7px;margin-top:9px}
+.day{display:flex;gap:11px;align-items:flex-start;font-size:14.5px;line-height:1.5}
+.day .dn{
+  font-family:"Barlow Condensed",sans-serif;font-weight:600;
+  text-transform:uppercase;font-size:13.5px;letter-spacing:.06em;
+  flex:0 0 42px;color:var(--ink-soft);padding-top:1px;
+}
+
+.note{
+  background:color-mix(in srgb,var(--accent) 8%,var(--paper));
+  border-left:4px solid var(--accent);
+  border-radius:0 10px 10px 0;padding:12px 14px;margin:13px 0;font-size:14.5px;line-height:1.55;
+}
+.note b{font-weight:600}
+
+footer{
+  text-align:center;padding:26px 16px 34px;color:var(--ink-soft);
+  font-family:"IBM Plex Mono",monospace;font-size:11px;line-height:1.7;letter-spacing:.05em;
+}
+
+@media (max-width:420px){
+  .brand h1{font-size:26px}
+  main{padding:16px 13px 80px}
+  .card{padding:15px 15px}
+  .spot .row{flex-direction:column;gap:2px}
+  .spot .row .k{flex:none}
+}
+@media (prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important}
+  .route .fill{height:calc(100% - 18px)!important}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="brand">
+    <h1>SF · Um Mês</h1>
+    <span class="sub">North Beach → Menlo Park</span>
+  </div>
+  <p class="kicker">
+    Base: <b>Molinari, 373 Columbus Ave</b> · Aulas: <b>ELI, One Embarcadero Center</b> · Escritório: <b>4085 Campbell Ave, Menlo Park</b>
+  </p>
+  <nav role="tablist" aria-label="Seções do guia">
+    <button role="tab" data-p="comutar"    aria-selected="true"><span class="dot"></span>Comutar</button>
+    <button role="tab" data-p="cozinha"    aria-selected="false"><span class="dot"></span>Cozinha</button>
+    <button role="tab" data-p="compras"    aria-selected="false"><span class="dot"></span>Compras</button>
+    <button role="tab" data-p="passeios"   aria-selected="false"><span class="dot"></span>Passeios</button>
+    <button role="tab" data-p="mes"        aria-selected="false"><span class="dot"></span>O Mês</button>
+    <button role="tab" data-p="essenciais" aria-selected="false"><span class="dot"></span>Essenciais</button>
+  </nav>
+</header>
+
+<main>
+
+<!-- ==================== COMUTAR ==================== -->
+<section class="panel on" id="p-comutar" style="--accent:var(--line-t)">
+
+  <div class="sec-head"><span class="bar"></span><h2>O trajeto padrão</h2><span class="n">Linha T + Caltrain</span></div>
+
+  <div class="card">
+    <h3>Molinari → Escritório em ~1h15</h3>
+    <p class="muted">Esta é a rota que você vai usar na maioria dos dias de escritório. O Clipper cobre o Muni e o Caltrain; a última perna é de shuttle gratuito.</p>
+
+    <div class="route" data-route>
+      <div class="fill"></div>
+
+      <div class="stop walk">
+        <div class="t">A pé · Columbus → Stockton</div>
+        <div class="d">Saia da Molinari (373 Columbus), desça a Columbus até a Broadway, vire à direita na Stockton St. Descida leve, sem ladeira pesada.</div>
+        <div class="meta">8–10 MIN · 700 M · GRÁTIS</div>
+      </div>
+
+      <div class="stop">
+        <div class="t">Chinatown–Rose Pak</div>
+        <div class="d">943 Stockton St. Estação nova, fundo e limpa — tem elevador e escada rolante. Esta é a ponta norte da linha T, então o trem sempre parte daqui: você senta.</div>
+        <div class="meta">MUNI METRO · LINHA T · $2,85 COM CLIPPER</div>
+      </div>
+
+      <div class="stop">
+        <div class="t">Linha T sentido sul</div>
+        <div class="d">Pegue o T rumo a Sunnydale / Bayview. Passa por Union Square/Market St e Yerba Buena–Moscone. Desça em <b>4th &amp; King</b>.</div>
+        <div class="meta">~12–15 MIN · TREM A CADA 8–12 MIN</div>
+      </div>
+
+      <div class="stop">
+        <div class="t">Estação Caltrain SF</div>
+        <div class="d">700 4th St. A saída do Muni deixa você praticamente na plataforma do Caltrain. Confira no painel qual trem — Local para todas as paradas, Limited/Express pula estações.</div>
+        <div class="meta">BALDEAÇÃO A PÉ · 2–4 MIN</div>
+      </div>
+
+      <div class="stop">
+        <div class="t">Caltrain sentido sul</div>
+        <div class="d">Direção San Jose / Gilroy. Desça em <b>Menlo Park</b> (1120 Merrill St) — é lá que o shuttle gratuito para. Não desça em Atherton.</div>
+        <div class="meta">~45–58 MIN · $8–14 · ZONA 1 → ZONA 3</div>
+      </div>
+
+      <div class="stop">
+        <div class="t">Shuttle M3 — Marsh Road</div>
+        <div class="d"><b>Gratuito e aberto a qualquer pessoa.</b> Sai da parada do shuttle na estação de Menlo Park e para em <b>Bohannon Dr &amp; Campbell Ave</b> — a esquina do escritório. Os horários são casados com a chegada dos trens.</div>
+        <div class="meta">GRÁTIS · SEG–SEX · ~7H45 ÀS 17H35</div>
+      </div>
+
+      <div class="stop walk">
+        <div class="t">4085 Campbell Ave, Suite 200</div>
+        <div class="d">Da parada do shuttle é uma caminhada de poucos minutos.</div>
+        <div class="meta">CHEGOU</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec-head"><span class="bar"></span><h2>O shuttle M3</h2><span class="n">Grátis · Marsh Road</span></div>
+
+  <div class="card">
+    <h3>A última perna sai de graça</h3>
+    <p>O <b>M3–Marsh Road Shuttle</b> é operado pela prefeitura de Menlo Park em parceria com a SamTrans. É <b>gratuito e aberto a qualquer pessoa</b> — não precisa ser funcionário de empresa cadastrada, não precisa de Clipper, não precisa de bilhete. Você sobe e pronto.</p>
+
+    <table class="tbl">
+      <thead><tr><th>O quê</th><th>Detalhe</th></tr></thead>
+      <tbody>
+        <tr><td>Sua parada</td><td><b>Bohannon Dr &amp; Campbell Ave</b></td></tr>
+        <tr><td>Ponta oposta</td><td>Estação Caltrain de Menlo Park (parada do shuttle, 1120 Merrill St)</td></tr>
+        <tr><td>Funcionamento</td><td class="mono">SEG–SEX</td></tr>
+        <tr><td>Faixa de horário</td><td class="mono">~7:45 – 17:35</td></tr>
+        <tr><td>Custo</td><td class="mono">$0</td></tr>
+        <tr><td>Acessibilidade</td><td>Acessível para cadeira de rodas, com bicicletário na frente</td></tr>
+      </tbody>
+    </table>
+
+    <h4>O que isso muda</h4>
+    <p class="muted">Descarta a estação de Atherton de vez. Atherton era mais perto a pé, mas quase nenhum trem para lá — e agora a caminhada de 15–20 min some. Desça sempre em <b>Menlo Park</b>.</p>
+
+    <div class="note">
+      <b>O detalhe que decide seu dia:</b> o shuttle só roda em dias úteis e a última corrida sai por volta das 17h35. Se você sair do escritório depois disso, não tem shuttle de volta — vai ser a pé (15–20 min) ou Uber até a estação. Alinhe seu horário de saída com isso.
+    </div>
+
+    <h4>Antes do primeiro dia</h4>
+    <p class="muted">Baixe o mapa e a grade de horários — os horários são casados com trens específicos, então vale saber qual trem pegar em SF para não esperar na plataforma. Confirme também com o pessoal do escritório: eles usam isso todo dia e sabem qual corrida funciona melhor.</p>
+
+    <div class="btnrow">
+      <a class="btn solid" href="https://www.menlopark.gov/Government/Departments/Public-Works/Transportation-Division/City-Shuttle-services/Marsh-Road-Shuttle" target="_blank" rel="noopener">Horários do M3</a>
+      <a class="btn" href="https://www.menlopark.gov/Government/Departments/Public-Works/Transportation-Division/City-Shuttle-services" target="_blank" rel="noopener">Todos os shuttles</a>
+    </div>
+    <p class="tiny" style="margin-top:10px">Transporte da prefeitura: (650) 330-6770 · transportation@menlopark.gov</p>
+  </div>
+
+  <div class="sec-head"><span class="bar"></span><h2>As três opções</h2><span class="n">Custo × tempo</span></div>
+
+  <div class="card">
+    <table class="tbl">
+      <thead><tr><th>Opção</th><th>Custo</th><th>Tempo</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><b>1 · Padrão</b><br><span class="tiny">A pé + T + Caltrain + shuttle M3 grátis</span></td>
+          <td class="mono">$11–17</td><td class="mono">~1h15</td>
+        </tr>
+        <tr>
+          <td><b>2 · Fora do horário do shuttle</b><br><span class="tiny">Mesma rota, mas Uber na ponta de Menlo Park</span></td>
+          <td class="mono">$19–28</td><td class="mono">~1h10</td>
+        </tr>
+        <tr>
+          <td><b>3 · Confortável</b><br><span class="tiny">Uber/Lyft direto porta a porta</span></td>
+          <td class="mono">$60–70</td><td class="mono">45–60 min</td>
+        </tr>
+      </tbody>
+    </table>
+    <p class="tiny" style="margin-top:11px">
+      Com o shuttle gratuito, a Opção 1 virou também a mais rápida das opções de transporte público — não há mais motivo para pagar Uber na chegada, exceto se você perder a última corrida do M3. Guarde a Opção 3 para chuva forte, reunião crítica ou bagagem pesada.
+    </p>
+  </div>
+
+  <div class="sec-head"><span class="bar"></span><h2>Clipper e pagamento</h2><span class="n">Antes do primeiro dia</span></div>
+
+  <div class="card">
+    <h3>Resolva isso na primeira semana</h3>
+    <p>O <b>Clipper</b> é o cartão único de transporte da Bay Area — vale para Muni, Caltrain, BART, balsas e ônibus. Dá para usar o cartão físico ou adicionar ao Apple Wallet / Google Wallet e pagar com o celular.</p>
+    <h4>Como funciona no Caltrain</h4>
+    <p class="muted">Diferente do Muni, no Caltrain você precisa <b>encostar o cartão na entrada e na saída</b> (tag on / tag off). Se esquecer o tag off, é cobrada a tarifa máxima da linha. Esse é o erro nº 1 de quem chega.</p>
+    <h4>Passe mensal</h4>
+    <p class="muted">Se você for ao escritório 3+ dias por semana durante o mês inteiro, compare o passe mensal do Caltrain com o avulso — a partir de ~12 idas e voltas o mensal normalmente compensa. Confira as zonas: SF fica na Zona 1 e Menlo Park/Atherton na Zona 3.</p>
+    <div class="btnrow">
+      <a class="btn solid" href="https://www.clippercard.com" target="_blank" rel="noopener">Clipper</a>
+      <a class="btn" href="https://www.caltrain.com/schedules" target="_blank" rel="noopener">Horários Caltrain</a>
+      <a class="btn" href="https://www.sfmta.com" target="_blank" rel="noopener">Muni / SFMTA</a>
+    </div>
+  </div>
+
+  <div class="sec-head"><span class="bar"></span><h2>Aula de inglês</h2><span class="n">ELI · Embarcadero</span></div>
+
+  <div class="card">
+    <h3>Molinari → ELI</h3>
+    <p class="muted">One Embarcadero Center, Lobby Level. Seg–qui 9h30–17h · sex 10h–16h · (415) 544-0311</p>
+    <div class="route" data-route>
+      <div class="fill"></div>
+      <div class="stop walk">
+        <div class="t">A pé — a rota bonita</div>
+        <div class="d">Columbus Ave → Battery St → Embarcadero. Plano, movimentado, à beira d'água. É o trajeto que vale a pena fazer sem pressa.</div>
+        <div class="meta">20–25 MIN · GRÁTIS</div>
+      </div>
+      <div class="stop">
+        <div class="t">Ou Muni</div>
+        <div class="d">Ônibus descendo a Columbus em direção ao Financial District, ou o histórico bonde F-Line pela Embarcadero. Confira a linha do dia no Google Maps — há mais de uma opção.</div>
+        <div class="meta">~10–15 MIN · $2,85</div>
+      </div>
+      <div class="stop">
+        <div class="t">Ou Uber</div>
+        <div class="d">Para dia de chuva ou atraso.</div>
+        <div class="meta">8–10 MIN · ~$10–14</div>
+      </div>
+    </div>
+    <div class="note" style="margin-bottom:0">
+      Faça o trajeto a pé nos dias bons: 25 min de caminhada duas vezes ao dia já resolve sua atividade física do mês inteiro, e a Embarcadero é uma das melhores caminhadas da cidade.
+    </div>
+  </div>
+
+  <div class="sec-head"><span class="bar"></span><h2>Regras de sobrevivência no transporte</h2><span class="n">O que ninguém avisa</span></div>
+
+  <div class="card">
+    <h3>Anote antes de sair</h3>
+    <p>· <b>Caltrain tem horário, não frequência.</b> Fora do pico o intervalo passa de 30 min a 1h. Perder um trem custa caro em tempo — cheque o horário antes de sair de casa, não na estação.</p>
+    <p>· <b>Pico é 7h–9h e 16h30–18h30.</b> Nesses horários há mais trens e mais opções Express. Fora disso, planeje com folga.</p>
+    <p>· <b>Baldeação Muni → Caltrain é a pé, dentro da mesma área.</b> Reserve 5 min de margem; se o T atrasar, você perde o trem.</p>
+    <p>· <b>O shuttle M3 acaba ~17h35 e não roda no fim de semana.</b> Essa é a sua âncora de horário de saída do escritório. Depois disso, é a pé ou Uber até a estação.</p>
+    <p>· <b>Leve casaco sempre.</b> Mesmo em dia de sol, a plataforma do Caltrain e a volta à noite são frias e ventosas. Isso não é exagero — é a regra do ano inteiro em SF.</p>
+    <p>· <b>Baixe os horários offline.</b> O sinal cai em trechos do túnel do Muni e em partes do trajeto do Caltrain.</p>
+    <p style="margin-bottom:0">· <b>Na volta,</b> o T sobe da 4th &amp; King até Chinatown–Rose Pak e você desce a 8 min de casa — mesmo caminho, invertido.</p>
+  </div>
+</section>
+
+<!-- ==================== COZINHA ==================== -->
+<section class="panel" id="p-cozinha" style="--accent:var(--line-n)">
+
+  <div class="sec-head"><span class="bar"></span><h2>A lógica da cozinha</h2><span class="n">Domingo resolve a semana</span></div>
+
+  <div class="card">
+    <h3>Como isso funciona</h3>
+    <p>Você tem dias de escritório (marmita obrigatória — comprar almoço em Menlo Park custa $18–25), dias de aula no ELI, e noites em casa. A estratégia é simples:</p>
+    <p>· <b>Domingo à tarde:</b> 90 min de cozinha rende 4–5 marmitas. Uma proteína, um carboidrato, um molho, dois legumes.</p>
+    <p>· <b>Noites de semana:</b> pratos de 15–25 min, panela única, poucos ingredientes.</p>
+    <p style="margin-bottom:0">· <b>Quarta:</b> reposição rápida no mercado da esquina para o que acabou (folhas, ovos, pão).</p>
+    <div class="note" style="margin-bottom:0">
+      <b>Antes de comprar panela:</b> confirme o que já tem na cozinha do apartamento. O mínimo viável é uma frigideira grande, uma panela média, uma tábua, uma faca decente e 5 potes de marmita com tampa. O resto dá para improvisar.
+    </div>
+  </div>
+
+  <div class="sec-head"><span class="bar"></span><h2>Marmitas de domingo</h2><span class="n">4–5 porções cada</span></div>
+
+  <div class="card">
+    <div class="recipe">
+      <h3>Frango, arroz e legumes assados</h3>
+      <div class="meta">70 MIN · 5 MARMITAS · ~$14 TOTAL</div>
+      <ul>
+        <li>1 kg de coxa/sobrecoxa de frango sem osso (mais barata e não resseca ao reaquecer)</li>
+        <li>2 xíc. de arroz integral ou branco</li>
+        <li>1 brócolis, 2 cenouras, 1 abobrinha, 1 cebola roxa</li>
+        <li>Azeite, páprica defumada, alho em pó, sal, pimenta, limão</li>
+      </ul>
+      <ol>
+        <li>Tempere o frango com páprica, alho, sal, pimenta e suco de meio limão. Deixe 15 min.</li>
+        <li>Corte os legumes em pedaços grandes, misture com azeite e sal, espalhe numa assadeira.</li>
+        <li>Forno a 220 °C: legumes por 25 min. Adicione o frango por cima e asse mais 25–30 min.</li>
+        <li>Cozinhe o arroz enquanto assa.</li>
+        <li>Monte: arroz na base, frango e legumes por cima. Esfrie antes de tampar. Geladeira 4 dias.</li>
+      </ol>
+    </div>
+
+    <div class="recipe">
+      <h3>Feijoada simplificada de panela</h3>
+      <div class="meta">80 MIN · 5 MARMITAS · ~$12 TOTAL · MATA A SAUDADE</div>
+      <ul>
+        <li>500 g de feijão preto (deixe de molho na noite anterior)</li>
+        <li>300 g de linguiça defumada ou bacon em cubos</li>
+        <li>1 cebola grande, 4 dentes de alho, 2 folhas de louro</li>
+        <li>Arroz branco e couve fatiada fina para servir</li>
+      </ul>
+      <ol>
+        <li>Doure a linguiça/bacon na panela. Reserve a gordura.</li>
+        <li>Refogue cebola e alho nessa gordura até dourar.</li>
+        <li>Junte o feijão escorrido, o louro e água cobrindo 3 dedos acima. Cozinhe 50–60 min até amaciar (panela de pressão: 25 min).</li>
+        <li>Volte a carne, ajuste o sal, cozinhe mais 10 min sem tampa para engrossar.</li>
+        <li>Refogue a couve rapidamente no alho. Monte com arroz. Congela muito bem.</li>
+      </ol>
+    </div>
+
+    <div class="recipe">
+      <h3>Chili de carne moída e feijão</h3>
+      <div class="meta">45 MIN · 5 MARMITAS · ~$13 TOTAL · PANELA ÚNICA</div>
+      <ul>
+        <li>700 g de carne moída</li>
+        <li>2 latas de feijão (kidney ou black beans), escorridas</li>
+        <li>1 lata de tomate pelado, 1 cebola, 3 dentes de alho, 1 pimentão</li>
+        <li>Cominho, páprica, orégano, sal, pimenta</li>
+      </ul>
+      <ol>
+        <li>Doure a carne em fogo alto sem mexer muito, para criar crosta. Reserve.</li>
+        <li>Refogue cebola, alho e pimentão até amaciar.</li>
+        <li>Volte a carne, junte tomate, feijão e temperos. Cozinhe 25 min em fogo baixo.</li>
+        <li>Sirva com arroz. Congela perfeitamente e fica melhor no dia seguinte.</li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="sec-head"><span class="bar"></span><h2>Jantas de 20 minutos</h2><span class="n">Noites de semana</span></div>
+
+  <div class="card">
+    <div class="recipe">
+      <h3>Macarrão alho, óleo e brócolis</h3>
+      <div class="meta">18 MIN · 2 PORÇÕES</div>
+      <ol>
+        <li>Cozinhe o macarrão. Nos últimos 3 min, jogue o brócolis na mesma água.</li>
+        <li>Numa frigideira, doure 4 dentes de alho fatiados em bastante azeite com pimenta calabresa. Fogo baixo — alho queimado amarga tudo.</li>
+        <li>Escorra a massa guardando 1 xíc. da água. Junte tudo na frigideira com um pouco da água até criar molho.</li>
+        <li>Parmesão por cima. Fim.</li>
+      </ol>
+    </div>
+
+    <div class="recipe">
+      <h3>Salmão na frigideira com batata</h3>
+      <div class="meta">22 MIN · 2 PORÇÕES</div>
+      <ol>
+        <li>Batatas pequenas cortadas ao meio, na frigideira com azeite e sal, tampadas, 12 min.</li>
+        <li>Empurre para o lado, coloque o salmão com a pele para baixo. 4 min sem mexer.</li>
+        <li>Vire, 2–3 min. Limão e ervas no final.</li>
+      </ol>
+    </div>
+
+    <div class="recipe">
+      <h3>Ovos mexidos cremosos com torrada</h3>
+      <div class="meta">10 MIN · 1 PORÇÃO · JANTAR DE DIA RUIM</div>
+      <ol>
+        <li>3 ovos batidos com uma pitada de sal, na frigideira fria com manteiga.</li>
+        <li>Fogo baixo, mexendo sempre. Tire do fogo antes de parecer pronto — o calor residual termina.</li>
+        <li>Pão bom da Molinari torrado. Abacate se tiver.</li>
+      </ol>
+    </div>
+
+    <div class="recipe">
+      <h3>Bowl de grão-de-bico e legumes</h3>
+      <div class="meta">20 MIN · 2 PORÇÕES · VEGETARIANO</div>
+      <ol>
+        <li>Grão-de-bico de lata escorrido, seco no papel, frito na frigideira com azeite, cominho e páprica até ficar crocante.</li>
+        <li>Base de arroz ou folhas, legumes crus fatiados por cima.</li>
+        <li>Molho: iogurte natural + limão + alho amassado + sal.</li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="sec-head"><span class="bar"></span><h2>Almoço nos dias de escritório</h2><span class="n">Menlo Park</span></div>
+
+  <div class="card">
+    <h3>Leve, mas tenha um plano B</h3>
+    <p>· <b>Marmita:</b> saia com ela na mochila. Confirme se o escritório tem micro-ondas e geladeira no primeiro dia.</p>
+    <p>· <b>Se esquecer:</b> a área da Campbell Ave / Menlo Park tem opções de almoço rápido, mas o preço médio é $18–25. Um almoço comprado equivale a quase duas marmitas de domingo inteiras.</p>
+    <p style="margin-bottom:0">· <b>Café:</b> leve garrafa térmica. Café comprado todo dia, no mês, vira facilmente $100+.</p>
+  </div>
+</section>
+
+<!-- ==================== COMPRAS ==================== -->
+<section class="panel" id="p-compras" style="--accent:var(--line-n)">
+
+  <div class="sec-head"><span class="bar"></span><h2>Onde comprar</h2><span class="n">Do mais barato ao mais perto</span></div>
+
+  <div class="card">
+    <div class="spot">
+      <h3>Trader Joe's</h3>
+      <div class="addr">401 Bay St · 12–15 min a pé · 8h–21h todos os dias</div>
+      <p class="muted">A compra grande é aqui. Melhor custo-benefício de SF para proteína, congelados, laticínios e básicos. Vá uma vez por semana com mochila boa — a subida na volta é real.</p>
+    </div>
+    <div class="spot">
+      <h3>Pang Kee Bargain Market</h3>
+      <div class="addr">1308 Stockton St · 5 min a pé · 8h–18h</div>
+      <p class="muted">Mercado asiático barato. Melhor lugar para hortifruti, temperos, arroz em saco grande e lámen. Preço de legumes bem abaixo do Trader Joe's.</p>
+    </div>
+    <div class="spot">
+      <h3>Jw &amp; L Market</h3>
+      <div class="addr">702 Vallejo St · 4 min a pé · 7h30–17h30</div>
+      <p class="muted">Bom em carnes e frescos. Útil para reposição de meio de semana.</p>
+    </div>
+    <div class="spot">
+      <h3>North Beach Food Mart</h3>
+      <div class="addr">900 Columbus Ave · 2 min a pé · 8h–22h</div>
+      <p class="muted">A bodega da esquina. Preço mais alto, mas resolve o "acabou o ovo às 21h".</p>
+    </div>
+  </div>
+
+  <div class="sec-head"><span class="bar"></span><h2>Compra de instalação</h2><span class="n">Primeiros dias</span></div>
+
+  <div class="card">
+    <p class="tiny" style="margin-top:0">Marque conforme for comprando — fica salvo no aparelho.</p>
+    <div id="list-setup"></div>
+  </div>
+
+  <div class="sec-head"><span class="bar"></span><h2>Compra semanal</h2><span class="n">Repõe toda semana</span></div>
+
+  <div class="card">
+    <p class="tiny" style="margin-top:0">Base para as marmitas e jantas. Desmarque tudo no domingo e recomece.</p>
+    <div id="list-week"></div>
+    <div class="btnrow">
+      <button class="btn" id="reset-week">Limpar lista semanal</button>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== PASSEIOS ==================== -->
+<section class="panel" id="p-passeios" style="--accent:var(--line-k)">
+
+  <div class="sec-head"><span class="bar"></span><h2>A pé de casa</h2><span class="n">Sem transporte</span></div>
+
+  <div class="card">
+    <div class="spot">
+      <h3>Coit Tower</h3>
+      <div class="addr">1 Telegraph Hill Blvd · 10h–17h · ~$11 para subir</div>
+      <div class="row"><span class="k">Como ir</span><span class="v">15–20 min a pé subindo pela Greenwich Steps. É subida séria, mas o caminho é lindo e cheio de jardins.</span></div>
+      <div class="row"><span class="k">Quando</span><span class="v">Fim de tarde em dia claro. A fila do elevador pode dar 20 min.</span></div>
+      <div class="row"><span class="k">Por quê</span><span class="v">Vista de 360° da cidade e da baía, mais os murais dos anos 1930 no térreo — que são gratuitos mesmo sem subir.</span></div>
+    </div>
+    <div class="spot">
+      <h3>Chinatown</h3>
+      <div class="addr">Grant Ave e Stockton St · aberto sempre</div>
+      <div class="row"><span class="k">Como ir</span><span class="v">5 min a pé. Começa literalmente onde North Beach termina.</span></div>
+      <div class="row"><span class="k">Quando</span><span class="v">Manhã de dia de semana para ver o bairro funcionando de verdade, não a versão turística.</span></div>
+      <div class="row"><span class="k">Por quê</span><span class="v">A Grant Ave é a rua das lanternas e das lojas; a Stockton é onde os moradores fazem compras. Ande pelas duas.</span></div>
+    </div>
+    <div class="spot">
+      <h3>Pier 39 e Fisherman's Wharf</h3>
+      <div class="addr">The Embarcadero</div>
+      <div class="row"><span class="k">Como ir</span><span class="v">12–15 min a pé descendo a Columbus. Mesmo caminho do Trader Joe's.</span></div>
+      <div class="row"><span class="k">Quando</span><span class="v">Cedo, antes das 10h. Depois disso vira multidão.</span></div>
+      <div class="row"><span class="k">Por quê</span><span class="v">Os leões-marinhos nas docas são o motivo real. O resto é turístico e caro — veja e siga.</span></div>
+    </div>
+  </div>
+
+  <div class="sec-head"><span class="bar"></span><h2>Meia diária</h2><span class="n">Muni ou caminhada longa</span></div>
+
+  <div class="card">
+    <div class="spot">
+      <h3>Golden Gate Bridge</h3>
+      <div class="addr">Vista Point, lado norte · sempre aberto · grátis</div>
+      <div class="row"><span class="k">Como ir</span><span class="v">Ônibus Muni sentido Presidio/Marina até a área da ponte, ou caminhada longa pela Embarcadero → Crissy Field (bonita, ~1h30).</span></div>
+      <div class="row"><span class="k">Quando</span><span class="v">Manhã cedo, antes da neblina fechar. Verão em SF é a estação MAIS enevoada — a ponte some por trás da bruma com frequência.</span></div>
+      <div class="row"><span class="k">Por quê</span><span class="v">Atravessar a pé é a experiência completa (~2,7 km por lado). Leve corta-vento: venta muito e é bem mais frio ali do que na cidade.</span></div>
+    </div>
+    <div class="spot">
+      <h3>Twin Peaks</h3>
+      <div class="addr">501 Twin Peaks Blvd · 5h–meia-noite · grátis</div>
+      <div class="row"><span class="k">Como ir</span><span class="v">Muni até a região do Castro e subida a pé, ou Uber direto (mais fácil, ~$20 de North Beach).</span></div>
+      <div class="row"><span class="k">Quando</span><span class="v">Entardecer, chegando ~30 min antes do pôr do sol. À noite dá para ver a cidade inteira acesa.</span></div>
+      <div class="row"><span class="k">Por quê</span><span class="v">A vista panorâmica alinha exatamente com a Market St. É o melhor mirante da cidade — e é de graça. Leve gorro: venta muito lá em cima.</span></div>
+    </div>
+    <div class="spot">
+      <h3>Golden Gate Park</h3>
+      <div class="addr">Aberto 24h · parque grátis, museus pagos</div>
+      <div class="row"><span class="k">Como ir</span><span class="v">Muni sentido oeste (~40 min de North Beach). Dá para pegar ônibus direto de perto do Fisherman's Wharf.</span></div>
+      <div class="row"><span class="k">Quando</span><span class="v">Sábado de manhã. Vá com o dia inteiro livre — é maior do que parece.</span></div>
+      <div class="row"><span class="k">Por quê</span><span class="v">Jardim de Chá Japonês, Conservatory of Flowers, Stow Lake, museu de Young. Na ponta oeste chega na Ocean Beach, com o melhor pôr do sol da cidade.</span></div>
+    </div>
+  </div>
+
+  <div class="sec-head"><span class="bar"></span><h2>Dia inteiro</h2><span class="n">Reserve com antecedência</span></div>
+
+  <div class="card">
+    <div class="spot">
+      <h3>Alcatraz</h3>
+      <div class="addr">Embarque no Pier 33 · balsas 9h–17h</div>
+      <div class="row"><span class="k">Como ir</span><span class="v">15 min a pé da Molinari até o Pier 33. Chegue 30 min antes do horário do bilhete — a balsa parte no horário e não espera.</span></div>
+      <div class="row"><span class="k">Quando</span><span class="v"><b>Compre com semanas de antecedência.</b> Esgota. A primeira balsa da manhã (~9h20) é a menos cheia; o tour noturno dá acesso a áreas fechadas e pega o pôr do sol.</span></div>
+      <div class="row"><span class="k">Por quê</span><span class="v">O audioguia narrado por ex-guardas e ex-detentos é excelente e está incluso. Reserve ~3h no total. Leve casaco — a ilha é fria e ventosa mesmo com sol.</span></div>
+    </div>
+    <div class="spot">
+      <h3>Muir Woods e Sausalito</h3>
+      <div class="addr">Do outro lado da ponte, no condado de Marin</div>
+      <div class="row"><span class="k">Como ir</span><span class="v">Balsa até Sausalito saindo do Ferry Building ou Pier 41; para Muir Woods é necessário reservar entrada e vaga/transporte com antecedência.</span></div>
+      <div class="row"><span class="k">Quando</span><span class="v">Um sábado do meio do mês, quando você já estiver ambientado.</span></div>
+      <div class="row"><span class="k">Por quê</span><span class="v">Sequoias gigantes a 40 min da cidade, e a volta de balsa ao entardecer com a skyline de SF à frente é das melhores coisas que a cidade oferece.</span></div>
+    </div>
+  </div>
+
+  <div class="note">
+    <b>A regra do clima em SF:</b> o verão é frio e enevoado, principalmente de manhã e perto da água. A janela de sol costuma ser das 12h às 17h, e setembro/outubro são os meses mais quentes do ano. Sempre saia com uma camada extra — é a diferença entre curtir e voltar mais cedo.
+  </div>
+</section>
+
+<!-- ==================== O MÊS ==================== -->
+<section class="panel" id="p-mes" style="--accent:var(--line-m)">
+
+  <div class="sec-head"><span class="bar"></span><h2>Plano de quatro semanas</h2><span class="n">Ritmo, não roteiro</span></div>
+
+  <div class="card">
+    <p class="muted" style="margin-top:0">A ideia não é encher todos os dias. É montar a base nas duas primeiras semanas para que as duas últimas fiquem leves e você aproveite de verdade.</p>
+  </div>
+
+  <div class="card">
+    <div class="week">
+      <div class="wk">Semana 1</div>
+      <h3>Instalar a base</h3>
+      <p class="muted">Objetivo: resolver logística para não gastar energia com isso depois.</p>
+      <div class="days">
+        <div class="day"><span class="dn">Seg</span><span>Chegada e reconhecimento do bairro a pé. Ache a Rose Pak, a farmácia e a lavanderia. Compra de instalação no Trader Joe's.</span></div>
+        <div class="day"><span class="dn">Ter</span><span>Primeiro dia no ELI. Faça o trajeto a pé para calibrar o tempo real.</span></div>
+        <div class="day"><span class="dn">Qua</span><span>Resolva o Clipper e teste a linha T até 4th &amp; King sem pressão, só para conhecer a baldeação.</span></div>
+        <div class="day"><span class="dn">Qui</span><span>Primeiro dia de escritório. Saia 20 min antes do que o app diz.</span></div>
+        <div class="day"><span class="dn">Sex</span><span>Aula. À noite, jantar em North Beach — você mora no melhor bairro de restaurante da cidade.</span></div>
+        <div class="day"><span class="dn">Sáb</span><span>Chinatown de manhã + Coit Tower no fim da tarde. Tudo a pé.</span></div>
+        <div class="day"><span class="dn">Dom</span><span>Primeira sessão de marmitas. Compre o Alcatraz para daqui a 2–3 semanas.</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="week">
+      <div class="wk">Semana 2</div>
+      <h3>Entrar no ritmo</h3>
+      <p class="muted">Objetivo: a rotina fica automática e sobra energia para o resto.</p>
+      <div class="days">
+        <div class="day"><span class="dn">Seg–Sex</span><span>Ciclo normal de aula e escritório. Marmita todo dia de escritório.</span></div>
+        <div class="day"><span class="dn">Qua</span><span>Reposição rápida no mercado da Stockton.</span></div>
+        <div class="day"><span class="dn">Sáb</span><span>Golden Gate Bridge de manhã cedo, antes da neblina. Atravesse a pé se o dia estiver claro.</span></div>
+        <div class="day"><span class="dn">Dom</span><span>Marmitas + Twin Peaks no fim da tarde para o pôr do sol.</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="week">
+      <div class="wk">Semana 3</div>
+      <h3>Explorar longe</h3>
+      <p class="muted">Objetivo: sair da bolha North Beach–Embarcadero–Menlo Park.</p>
+      <div class="days">
+        <div class="day"><span class="dn">Seg–Sex</span><span>Rotina. Se o passe mensal do Caltrain fizer sentido, já está pago e rendendo.</span></div>
+        <div class="day"><span class="dn">Sáb</span><span>Alcatraz de manhã (bilhete comprado na semana 1) + Pier 39 na volta.</span></div>
+        <div class="day"><span class="dn">Dom</span><span>Golden Gate Park o dia inteiro, terminando na Ocean Beach para o pôr do sol.</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="week">
+      <div class="wk">Semana 4</div>
+      <h3>Fechar bem</h3>
+      <p class="muted">Objetivo: repetir o que valeu e não deixar pendência para o último dia.</p>
+      <div class="days">
+        <div class="day"><span class="dn">Seg–Qua</span><span>Rotina. Última lavanderia. Comece a esvaziar a geladeira em vez de repor.</span></div>
+        <div class="day"><span class="dn">Qui</span><span>Últimos dias de aula e escritório — vale marcar um almoço ou café com o pessoal do escritório.</span></div>
+        <div class="day"><span class="dn">Sex</span><span>Compras de lembrança em Chinatown ou na Columbus Ave.</span></div>
+        <div class="day"><span class="dn">Sáb</span><span>Sausalito de balsa, ou o passeio que você mais gostou, repetido.</span></div>
+        <div class="day"><span class="dn">Dom</span><span>Malas, devolução do que precisar, e um último jantar em North Beach.</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec-head"><span class="bar"></span><h2>Ritmo semanal padrão</h2><span class="n">O molde</span></div>
+
+  <div class="card">
+    <table class="tbl">
+      <thead><tr><th>Dia</th><th>Manhã</th><th>Noite</th></tr></thead>
+      <tbody>
+        <tr><td class="mono">SEG</td><td>Aula ELI</td><td>Janta de 20 min</td></tr>
+        <tr><td class="mono">TER</td><td>Escritório (marmita)</td><td>Chega tarde — ovos ou sobra</td></tr>
+        <tr><td class="mono">QUA</td><td>Aula ELI</td><td>Reposição no mercado</td></tr>
+        <tr><td class="mono">QUI</td><td>Escritório (marmita)</td><td>Chega tarde — sobra</td></tr>
+        <tr><td class="mono">SEX</td><td>Aula ELI (até 16h)</td><td>Jantar fora em North Beach</td></tr>
+        <tr><td class="mono">SÁB</td><td>Passeio grande</td><td>Livre</td></tr>
+        <tr><td class="mono">DOM</td><td>Passeio curto</td><td>Marmitas da semana</td></tr>
+      </tbody>
+    </table>
+    <p class="tiny" style="margin-top:11px">Ajuste conforme os dias reais de escritório e aula — o importante é manter domingo como dia de cozinha e não empilhar passeio grande na véspera de dia de escritório.</p>
+  </div>
+</section>
+
+<!-- ==================== ESSENCIAIS ==================== -->
+<section class="panel" id="p-essenciais" style="--accent:var(--line-j)">
+
+  <div class="sec-head"><span class="bar"></span><h2>Endereços</h2><span class="n">Os que importam</span></div>
+
+  <div class="card">
+    <table class="tbl">
+      <thead><tr><th>Lugar</th><th>Endereço</th></tr></thead>
+      <tbody>
+        <tr><td><b>Base</b></td><td>Molinari, 373 Columbus Ave, SF 94133</td></tr>
+        <tr><td><b>Aula</b></td><td>ELI, One Embarcadero Center, Lobby Level, SF 94111</td></tr>
+        <tr><td><b>Escritório</b></td><td>4085 Campbell Ave, Suite 200, Menlo Park 94025</td></tr>
+        <tr><td><b>Metrô</b></td><td>Chinatown–Rose Pak, 943 Stockton St</td></tr>
+        <tr><td><b>Caltrain SF</b></td><td>700 4th St (4th &amp; King)</td></tr>
+        <tr><td><b>Caltrain Menlo Park</b></td><td>1120 Merrill St, Menlo Park</td></tr>
+        <tr><td><b>Parada do shuttle</b></td><td>Bohannon Dr &amp; Campbell Ave (M3, grátis)</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="sec-head"><span class="bar"></span><h2>Farmácias</h2><span class="n">Perto de casa</span></div>
+
+  <div class="card">
+    <div class="spot">
+      <h3>Walgreens Columbus</h3>
+      <div class="addr">1175 Columbus Ave · a mais central para North Beach · alguns dias 24h, confirme no local</div>
+    </div>
+    <div class="spot">
+      <h3>Walgreens Stockton</h3>
+      <div class="addr">1344 Stockton St · seg–sex 8h–21h, fins de semana reduzido</div>
+    </div>
+    <div class="spot">
+      <h3>Clay Medical Pharmacy</h3>
+      <div class="addr">929 Clay St #103 · independente, atendimento pessoal · seg–sex 9h30–17h, sáb até 14h</div>
+    </div>
+  </div>
+
+  <div class="sec-head"><span class="bar"></span><h2>Lavanderias</h2><span class="n">Self-service e wash &amp; fold</span></div>
+
+  <div class="card">
+    <div class="spot">
+      <h3>North Beach Laundry</h3>
+      <div class="addr">801 Filbert St · 7h30–22h todos os dias · paga pelo app PayRange</div>
+      <p class="muted">Self-service ou wash &amp; fold com entrega. A mais prática do bairro.</p>
+    </div>
+    <div class="spot">
+      <h3>Lily Laundromat</h3>
+      <div class="addr">1601 Powell St · 6h30–22h</div>
+      <p class="muted">Máquinas grandes — a escolha para edredom e cobertor.</p>
+    </div>
+    <div class="spot">
+      <h3>Tower Laundromat</h3>
+      <div class="addr">1800 Stockton St · seg–sex 7h30–18h, sáb 8h30–18h, fechada dom</div>
+      <p class="muted">Wash &amp; fold no mesmo dia. <b>Não aceita cartão</b> — leve dinheiro.</p>
+    </div>
+  </div>
+
+  <div class="sec-head"><span class="bar"></span><h2>Saúde</h2><span class="n">Urgent care</span></div>
+
+  <div class="card">
+    <div class="note" style="margin-top:0">
+      <b>Emergência real: ligue 911.</b> Para o que não é emergência mas precisa de atendimento rápido, use um urgent care — é muito mais barato e rápido que pronto-socorro nos EUA.
+    </div>
+    <div class="spot">
+      <h3>UCSF Health–GoHealth Urgent Care</h3>
+      <div class="addr">170 Columbus Ave, Suite 110 · a poucos minutos a pé · seg–qui e sáb–dom 8h–20h, sex 9h–17h</div>
+    </div>
+    <div class="spot">
+      <h3>Sutter Urgent Care</h3>
+      <div class="addr">55 2nd St · perto da estação Montgomery · todos os dias 8h–20h (fins de semana até 17h)</div>
+    </div>
+    <p class="tiny">Leve os dados do seu seguro viagem sempre no celular. Antes de ser atendido, pergunte se a clínica aceita o seu seguro — nos EUA isso muda o custo drasticamente.</p>
+  </div>
+
+  <div class="sec-head"><span class="bar"></span><h2>Números e apps</h2><span class="n">Salve no celular</span></div>
+
+  <div class="card">
+    <table class="tbl">
+      <thead><tr><th>O quê</th><th>Contato</th></tr></thead>
+      <tbody>
+        <tr><td>Emergência</td><td class="mono">911</td></tr>
+        <tr><td>Polícia não-emergencial</td><td class="mono">(415) 553-0123</td></tr>
+        <tr><td>ELI</td><td class="mono">(415) 544-0311</td></tr>
+        <tr><td>Caltrain</td><td class="mono">1-800-660-4287</td></tr>
+        <tr><td>Shuttle Menlo Park (M3)</td><td class="mono">(650) 330-6770</td></tr>
+        <tr><td>Apps</td><td>Clipper · Caltrain · MuniMobile · Uber · Lyft · PayRange</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<footer>
+  Guia pessoal · North Beach · San Francisco<br>
+  Horários e tarifas mudam — confirme antes de sair.
+</footer>
+
+</main>
+
+<script>
+(function(){
+  "use strict";
+
+  /* ---------- Armazenamento tolerante a falha ---------- */
+  var mem = {};
+  var store = {
+    get:function(k){
+      try{ var v = localStorage.getItem(k); return v===null?mem[k]:v; }
+      catch(e){ return mem[k]; }
+    },
+    set:function(k,v){
+      mem[k]=v;
+      try{ localStorage.setItem(k,v); }catch(e){}
+    }
+  };
+
+  /* ---------- Navegação por abas ---------- */
+  var tabs = Array.prototype.slice.call(document.querySelectorAll('nav button'));
+  var panels = Array.prototype.slice.call(document.querySelectorAll('.panel'));
+
+  function show(name){
+    tabs.forEach(function(t){ t.setAttribute('aria-selected', String(t.dataset.p===name)); });
+    panels.forEach(function(p){ p.classList.toggle('on', p.id==='p-'+name); });
+    store.set('sf.tab', name);
+    window.scrollTo({top:0, behavior:'instant'});
+    drawRoutes();
+  }
+  tabs.forEach(function(t){ t.addEventListener('click', function(){ show(t.dataset.p); }); });
+
+  var saved = store.get('sf.tab');
+  if(saved && document.getElementById('p-'+saved)) show(saved);
+
+  /* ---------- Animação do diagrama de rota ---------- */
+  function drawRoutes(){
+    var vis = document.querySelectorAll('.panel.on [data-route]');
+    Array.prototype.forEach.call(vis, function(r){
+      r.classList.remove('drawn');
+      requestAnimationFrame(function(){
+        requestAnimationFrame(function(){ r.classList.add('drawn'); });
+      });
+    });
+  }
+  drawRoutes();
+
+  /* ---------- Listas de compras ---------- */
+  var setupList = [
+    {g:'Cozinha básica', items:[
+      {n:'Azeite de oliva', q:'1 garrafa'},
+      {n:'Sal grosso e sal fino', q:'—'},
+      {n:'Pimenta-do-reino moída', q:'1'},
+      {n:'Alho em pó, páprica defumada, cominho, orégano', q:'4 potes'},
+      {n:'Vinagre', q:'1'},
+      {n:'Manteiga', q:'1'},
+      {n:'Açúcar e café', q:'—'},
+      {n:'Papel-alumínio e papel-toalha', q:'—'},
+      {n:'Detergente e esponja', q:'—'},
+      {n:'Sacos de lixo', q:'1 rolo'}
+    ]},
+    {g:'Equipamento (só o que faltar)', items:[
+      {n:'Potes de marmita com tampa', q:'5'},
+      {n:'Garrafa térmica para café', q:'1'},
+      {n:'Garrafa de água reutilizável', q:'1'},
+      {n:'Tábua de corte', q:'1'},
+      {n:'Mochila boa para compras', q:'1'}
+    ]},
+    {g:'Não é comida, mas resolve o mês', items:[
+      {n:'Cartão Clipper (ou adicionar ao celular)', q:'1'},
+      {n:'Corta-vento / casaco leve', q:'1'},
+      {n:'Adaptador de tomada e carregador extra', q:'—'},
+      {n:'Guarda-chuva pequeno', q:'1'},
+      {n:'Dinheiro em espécie para a lavanderia', q:'~$40'}
+    ]}
+  ];
+
+  var weekList = [
+    {g:'Proteína', items:[
+      {n:'Coxa/sobrecoxa de frango sem osso', q:'1 kg'},
+      {n:'Carne moída', q:'700 g'},
+      {n:'Ovos', q:'1 dúzia'},
+      {n:'Salmão ou peixe branco', q:'2 postas'},
+      {n:'Linguiça defumada ou bacon', q:'300 g'}
+    ]},
+    {g:'Base', items:[
+      {n:'Arroz', q:'1 pacote'},
+      {n:'Feijão preto (seco ou em lata)', q:'500 g / 2 latas'},
+      {n:'Macarrão', q:'2 pacotes'},
+      {n:'Grão-de-bico em lata', q:'2'},
+      {n:'Tomate pelado em lata', q:'2'},
+      {n:'Pão bom (Molinari ou padaria da Columbus)', q:'1'}
+    ]},
+    {g:'Legumes e frutas', items:[
+      {n:'Cebola', q:'3'},
+      {n:'Alho', q:'1 cabeça'},
+      {n:'Brócolis', q:'1'},
+      {n:'Cenoura', q:'3'},
+      {n:'Abobrinha', q:'2'},
+      {n:'Pimentão', q:'2'},
+      {n:'Batata pequena', q:'1 kg'},
+      {n:'Couve', q:'1 maço'},
+      {n:'Folhas para salada', q:'1 pacote'},
+      {n:'Limão', q:'4'},
+      {n:'Abacate', q:'2'},
+      {n:'Fruta para levar ao escritório', q:'a semana'}
+    ]},
+    {g:'Geladeira', items:[
+      {n:'Iogurte natural', q:'1 pote grande'},
+      {n:'Queijo parmesão', q:'1'},
+      {n:'Leite', q:'1'}
+    ]}
+  ];
+
+  function renderList(el, data, key){
+    var html = '';
+    data.forEach(function(grp, gi){
+      var total = grp.items.length;
+      html += '<div class="listhead"><h4>'+grp.g+'</h4><span class="cnt" data-cnt="'+gi+'">0/'+total+'</span></div>';
+      grp.items.forEach(function(it, ii){
+        var id = key+'.'+gi+'.'+ii;
+        var on = store.get(id)==='1';
+        html += '<label class="check">'
+             +  '<input type="checkbox" data-k="'+id+'" data-g="'+gi+'"'+(on?' checked':'')+'>'
+             +  '<span class="lbl">'+it.n+'</span>'
+             +  (it.q && it.q!=='—' ? '<span class="qty">'+it.q+'</span>' : '')
+             +  '</label>';
+      });
+    });
+    el.innerHTML = html;
+
+    function counts(){
+      data.forEach(function(grp, gi){
+        var boxes = el.querySelectorAll('input[data-g="'+gi+'"]');
+        var done = el.querySelectorAll('input[data-g="'+gi+'"]:checked').length;
+        var c = el.querySelector('[data-cnt="'+gi+'"]');
+        if(c) c.textContent = done+'/'+boxes.length;
+      });
+    }
+    el.addEventListener('change', function(e){
+      if(e.target.matches('input[type=checkbox]')){
+        store.set(e.target.dataset.k, e.target.checked?'1':'0');
+        counts();
+      }
+    });
+    counts();
+    return counts;
+  }
+
+  var setupEl = document.getElementById('list-setup');
+  var weekEl  = document.getElementById('list-week');
+  if(setupEl) renderList(setupEl, setupList, 'sf.setup');
+  var weekCounts = weekEl ? renderList(weekEl, weekList, 'sf.week') : null;
+
+  var resetBtn = document.getElementById('reset-week');
+  if(resetBtn){
+    resetBtn.addEventListener('click', function(){
+      var boxes = weekEl.querySelectorAll('input[type=checkbox]');
+      Array.prototype.forEach.call(boxes, function(b){
+        b.checked = false;
+        store.set(b.dataset.k,'0');
+      });
+      if(weekCounts) weekCounts();
+    });
+  }
+
+  /* ---------- Service worker ---------- */
+  if('serviceWorker' in navigator){
+    window.addEventListener('load', function(){
+      navigator.serviceWorker.register('sw.js').catch(function(){});
+    });
+  }
+})();
+</script>
+</body>
+</html>
