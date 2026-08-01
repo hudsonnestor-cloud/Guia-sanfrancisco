@@ -10,6 +10,7 @@ Vanilla JS, sem build, sem dependências. Um arquivo HTML + service worker.
 
 | Aba | Conteúdo |
 |---|---|
+| **Chip** | Plano de conectividade: T-Mobile U.S. Pass passo a passo, cobertura da viagem, especificações, plano B e comparativo de operadoras. |
 | **Comutar** | Trajeto passo a passo Molinari → escritório via Muni linha T + Caltrain + shuttle M3 gratuito, com diagrama de rota animado. Três opções comparadas por custo e tempo. Clipper, passe mensal, trajeto até o ELI e regras de sobrevivência no transporte. |
 | **Cozinha** | 3 receitas de marmita (rendem 5 porções cada) + 4 jantas de 20 minutos. Estratégia de domingo. |
 | **Compras** | Onde comprar (Trader Joe's e mercados de bairro) + duas listas com checkbox salvo no aparelho: compra de instalação e compra semanal. |
@@ -73,7 +74,7 @@ Depois de instalado, funciona offline — útil no túnel do Muni e nos trechos 
 
 Todo o conteúdo é HTML direto no `index.html` — edite o texto e dê push. As listas de compras estão no bloco `<script>`, nos arrays `setupList` e `weekList`, no formato `{n:'nome do item', q:'quantidade'}`.
 
-Ao mudar arquivos, incremente a versão do cache no `sw.js` (`sf-guia-v2` → `sf-guia-v2`) para forçar a atualização nos aparelhos já instalados.
+Ao mudar arquivos, incremente a versão do cache no `sw.js` (`sf-guia-v3` → `sf-guia-v3`) para forçar a atualização nos aparelhos já instalados.
 
 ## Estrutura
 

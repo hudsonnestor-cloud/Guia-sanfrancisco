@@ -2,7 +2,7 @@
    Estratégia: cache-first para os arquivos do app (funciona offline no metrô),
    network-first com fallback para navegação. */
 
-const CACHE = 'sf-guia-v2';
+const CACHE = 'sf-guia-v3';
 const ASSETS = [
   './',
   './index.html',

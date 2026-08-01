@@ -27,6 +27,7 @@
   --line-n:#2F6B4F;      /* Cozinha — verde */
   --line-j:#8A5A2B;      /* Essenciais — marrom */
   --line-m:#6B3F7A;      /* Mês — roxo */
+  --line-c:#B01E63;      /* Chip — magenta sinal */
 
   --shadow:0 1px 2px rgba(20,32,43,.06),0 8px 24px rgba(20,32,43,.06);
   --r:14px;
@@ -289,6 +290,7 @@ footer{
   </p>
   <nav role="tablist" aria-label="Seções do guia">
     <button role="tab" data-p="comutar"    aria-selected="true"><span class="dot"></span>Comutar</button>
+    <button role="tab" data-p="chip"       aria-selected="false"><span class="dot"></span>Chip</button>
     <button role="tab" data-p="cozinha"    aria-selected="false"><span class="dot"></span>Cozinha</button>
     <button role="tab" data-p="compras"    aria-selected="false"><span class="dot"></span>Compras</button>
     <button role="tab" data-p="passeios"   aria-selected="false"><span class="dot"></span>Passeios</button>
@@ -470,6 +472,84 @@ footer{
     <p>· <b>Leve casaco sempre.</b> Mesmo em dia de sol, a plataforma do Caltrain e a volta à noite são frias e ventosas. Isso não é exagero — é a regra do ano inteiro em SF.</p>
     <p>· <b>Baixe os horários offline.</b> O sinal cai em trechos do túnel do Muni e em partes do trajeto do Caltrain.</p>
     <p style="margin-bottom:0">· <b>Na volta,</b> o T sobe da 4th &amp; King até Chinatown–Rose Pak e você desce a 8 min de casa — mesmo caminho, invertido.</p>
+  </div>
+</section>
+
+<!-- ==================== CHIP ==================== -->
+<section class="panel" id="p-chip" style="--accent:var(--line-c)">
+
+  <div class="sec-head"><span class="bar"></span><h2>Chip americano</h2><span class="n">T-Mobile U.S. Pass</span></div>
+
+  <div class="card">
+    <h3>Por que este e não outro</h3>
+    <p>Planos americanos comuns (Visible, US Mobile) custam menos, mas exigem endereço e cartão dos EUA. O <b>U.S. Pass</b> foi feito para visitante: sem papelada, sem loja, sem análise de crédito.</p>
+    <p>eSIMs de viagem como Holafly e Airalo não dão um <b>número americano usável</b> — e é ele que destrava Uber, delivery e lista de espera de restaurante.</p>
+    <p class="price" style="font-size:15px">30 DIAS · US$ 50 + IMPOSTOS · ≈ US$ 1,67/DIA</p>
+  </div>
+
+  <div class="sec-head"><span class="bar"></span><h2>Passo a passo</h2><span class="n">Marque conforme fizer</span></div>
+
+  <div class="card">
+    <div id="list-chip"></div>
+  </div>
+
+  <div class="sec-head"><span class="bar"></span><h2>Cobertura da viagem</h2><span class="n">31 dias × 30 do passe</span></div>
+
+  <div class="card">
+    <h3>Falta um dia</h3>
+    <p class="muted">O passe cobre 30 dias e a viagem tem 31. Duas saídas:</p>
+    <p>· <b>Use a Airalo no primeiro dia</b> e ative o T-Mobile só no dia seguinte — assim o passe termina junto com a viagem.</p>
+    <p>· <b>Ou guarde a sobra da Airalo</b> para o dia do voo de volta.</p>
+    <p style="margin-bottom:0">Um passe de 7 dias também pode ser empilhado: ele começa sozinho quando o atual acaba.</p>
+    <div class="note" style="margin-bottom:0">
+      <b>Confira as datas.</b> Este plano foi montado para chegada em 15/08, mas você me disse 14/08 a 14/09 — o que dá 32 dias. Se a chegada for mesmo dia 14, são 2 dias a cobrir com a Airalo, não 1.
+    </div>
+  </div>
+
+  <div class="sec-head"><span class="bar"></span><h2>O que vem no passe</h2><span class="n">Especificações</span></div>
+
+  <div class="card">
+    <table class="tbl">
+      <thead><tr><th>Item</th><th>O que você tem</th></tr></thead>
+      <tbody>
+        <tr><td>Dados no celular</td><td><b>Ilimitado</b><br><span class="tiny">50 GB em prioridade máxima, depois segue ilimitado</span></td></tr>
+        <tr><td>Hotspot</td><td><b>50 GB</b><br><span class="tiny">Depois cai para 600 kbps, mas não acaba</span></td></tr>
+        <tr><td>Ligação e SMS</td><td><b>Ilimitado</b><br><span class="tiny">EUA, México e Canadá</span></td></tr>
+        <tr><td>Vídeo</td><td><b>SD</b><br><span class="tiny">Sempre, desde o primeiro dia</span></td></tr>
+        <tr><td>Número</td><td><b>Americano</b><br><span class="tiny">Destrava Uber, delivery e verificação por SMS</span></td></tr>
+        <tr><td>Renovação</td><td><b>Manual</b><br><span class="tiny">Nada é cobrado quando você voltar</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="sec-head"><span class="bar"></span><h2>Plano B</h2><span class="n">Se der errado</span></div>
+
+  <div class="card">
+    <h3>Celular bloqueado ou sem eSIM</h3>
+    <p class="muted">Vá de AmericaChip com chip físico. Custa mais, mas tem suporte em português e chega antes da viagem.</p>
+    <h4>Todos os cartões recusados</h4>
+    <p class="muted">Compre um pré-pago da AT&amp;T ou T-Mobile em loja física — tem loja em Union Square e você paga presencialmente.</p>
+    <h4>Oferta saiu do ar</h4>
+    <p class="muted">É promoção por tempo limitado. Confira o site do U.S. Pass na semana da viagem.</p>
+    <div class="btnrow">
+      <a class="btn solid" href="https://www.t-mobile.com/uspass" target="_blank" rel="noopener">T-Mobile U.S. Pass</a>
+    </div>
+  </div>
+
+  <div class="sec-head"><span class="bar"></span><h2>Comparativo</h2><span class="n">30 dias</span></div>
+
+  <div class="card">
+    <table class="tbl">
+      <thead><tr><th>Opção</th><th>Preço</th><th>Número EUA</th></tr></thead>
+      <tbody>
+        <tr><td><b>T-Mobile U.S. Pass</b></td><td class="mono">US$ 50</td><td>Sim</td></tr>
+        <tr><td>Visible / US Mobile</td><td class="mono">US$ 25</td><td>Sim, mas exige cartão e endereço americanos</td></tr>
+        <tr><td>Airalo</td><td class="mono">US$ 20–45</td><td>Não</td></tr>
+        <tr><td>Holafly</td><td class="mono">US$ 75–90</td><td>Não</td></tr>
+        <tr><td>AmericaChip</td><td class="mono">Mais caro</td><td>Não, mas atende em português</td></tr>
+      </tbody>
+    </table>
+    <p class="tiny" style="margin-top:11px">Preços sem impostos, verificados em ago/2026. Compra e ativação só funcionam dentro dos EUA.</p>
   </div>
 </section>
 
@@ -1058,10 +1138,29 @@ footer{
     return counts;
   }
 
+  var chipList = [
+    {g:'Antes de embarcar', items:[
+      {n:'Confirmar que o celular aceita eSIM e está desbloqueado — iPhone: Ajustes → Geral → Sobre → procure "EID". Se não aparecer, vá para o plano B.', q:''},
+      {n:'Comprar uma eSIM Airalo de 1 GB para os EUA (~US$ 5). Instale o QR code ainda no Brasil, mas não ative — é a ponte para conseguir comprar o T-Mobile.', q:''},
+      {n:'Separar dois cartões internacionais. A T-Mobile aceita cartões de "países selecionados" e não diz quais — tenha um de reserva.', q:''}
+    ]},
+    {g:'Dia da chegada', items:[
+      {n:'Ativar a Airalo assim que sair do avião — já sai do aeroporto conectado, serve para o Uber e para o passo seguinte.', q:''},
+      {n:'Baixar o app "T-Mobile Prepaid eSIM" e comprar o 30-Day Pass. Só é vendido dentro dos EUA e ativa na hora — não compre antes do voo.', q:''},
+      {n:'Deixar o chip brasileiro ativo com dados e roaming desligados. O WhatsApp continua no número de sempre; defina a linha T-Mobile como padrão para dados.', q:''}
+    ]},
+    {g:'Fim da viagem', items:[
+      {n:'Guardar ~500 MB da Airalo para o dia do voo de volta. O passe não renova sozinho — nada é cobrado depois.', q:''}
+    ]}
+  ];
+
   var setupEl = document.getElementById('list-setup');
   var weekEl  = document.getElementById('list-week');
   if(setupEl) renderList(setupEl, setupList, 'sf.setup');
   var weekCounts = weekEl ? renderList(weekEl, weekList, 'sf.week') : null;
+
+  var chipEl = document.getElementById('list-chip');
+  if(chipEl) renderList(chipEl, chipList, 'sf.chip');
 
   var resetBtn = document.getElementById('reset-week');
   if(resetBtn){
